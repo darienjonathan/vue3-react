@@ -1,36 +1,57 @@
-import reactLogo from "@/assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import { Top } from "@/components/pages/Top";
-import { useState } from "react";
+import { Outlet, Link, useMatches } from "react-router-dom";
+import styles from "common/css/app.module.css";
+
+type Link = {
+  to: string;
+  text: string;
+};
+
+const links: Link[] = [
+  { to: "/", text: "Home" },
+  { to: "/counter", text: "Counter" },
+];
 
 export const App: React.FC = () => {
-  const [foo, setFoo] = useState(10);
-  let bar = 10 + foo;
+  const matches = useMatches();
+  const activeLink = [...links]
+    .reverse()
+    .find((link) => matches.some((match) => match.pathname === link.to));
 
-  const handleClick = () => {
-    setFoo((prev) => prev + 10);
-    bar = 20;
-  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Top />
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div>{bar}</div>
-      <button onClick={handleClick}>{foo}</button>
-    </>
+    <div className={styles.app}>
+      <header className={[styles.app_header, styles.header].join(" ")}>
+        <div
+          className={[styles.header_label, styles.header_label__react].join(
+            " ",
+          )}
+        >
+          React
+        </div>
+        <div className={styles.header_text}>シンプルなvue3とReact比較</div>
+      </header>
+      <aside className={styles.app_aside}>
+        <div className={styles.link_activeRoute}>
+          <div>Active route:</div>
+          <div>{activeLink?.to}</div>
+        </div>
+        <nav className={styles.link_list}>
+          {links.map(({ to, text }) => (
+            <Link
+              key={to}
+              to={to}
+              className={[
+                styles.link_item,
+                to === activeLink?.to ? styles.link_item__active : "",
+              ].join(" ")}
+            >
+              {text}
+            </Link>
+          ))}
+        </nav>
+      </aside>
+      <main className={styles.app_main}>
+        <Outlet />
+      </main>
+    </div>
   );
 };

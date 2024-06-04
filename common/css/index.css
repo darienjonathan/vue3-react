@@ -1,0 +1,49 @@
+:root {
+  --black: rgb(32 32 32);
+  --white: rgb(228 228 228);
+  --grey-dark: rgb(64 64 64);
+  --grey-light: rgb(192 192 192);
+  --react-dark: rgb(35 39 47);
+  --react-light: rgb(88 196 220);
+  --vue-dark: rgb(28 95 32);
+  --vue-light: rgb(66 227 146);
+  --red-dark: rgb(128 0 0);
+  --red-light: rgb(255 128 128);
+}
+
+html {
+  --text-color: var(--black);
+  --bg-color: var(--white);
+  --btn-bg-color: var(--grey-light);
+  --vue-color: var(--vue-light);
+  --react-color: var(--react-light);
+  --link-visited-color: var(--red-dark);
+}
+
+html.dark {
+  --text-color: var(--white);
+  --bg-color: var(--black);
+  --btn-bg-color: var(--grey-dark);
+  --vue-color: var(--vue-dark);
+  --react-color: var(--react-dark);
+  --link-visited-color: var(--red-light);
+}
+
+body {
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+button {
+  background-color: var(--btn-bg-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--text-color);
+}
+
+a.visited {
+  color: var(--link-visited-color);
+}

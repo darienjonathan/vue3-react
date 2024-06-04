@@ -1,30 +1,50 @@
 <script setup lang="ts">
-import HelloWorld from "@/components/HelloWorld.vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+
+type Link = {
+  to: string;
+  text: string;
+};
+
+const links: Link[] = [
+  { to: "/", text: "Home" },
+  { to: "/counter", text: "Counter" },
+];
+
+const route = useRoute();
+const activeLink = computed(() => links.find((link) => link.to === route.path));
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div :class="$style.app">
+    <header :class="[$style.app_header, $style.header]">
+      <div :class="[$style.header_label, $style.header_label__vue]">Vue</div>
+      <div :class="$style.header_text">シンプルなvue3とReact比較</div>
+    </header>
+    <aside :class="$style.app_aside">
+      <div :class="$style.link_activeRoute">
+        <div>Active route:</div>
+        <div>{{ activeLink?.to }}</div>
+      </div>
+      <nav :class="$style.link_list">
+        <template v-for="{ to, text } in links" :key="to">
+          <router-link
+            :to="to"
+            :class="[
+              $style.link_item,
+              to === activeLink?.to ? $style.link_item__active : '',
+            ]"
+          >
+            {{ text }}
+          </router-link>
+        </template>
+      </nav>
+    </aside>
+    <main :class="$style.app_main"><router-view /></main>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<style module>
+@import url("common/css/app.module.css");
 </style>

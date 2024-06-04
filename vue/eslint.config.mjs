@@ -15,6 +15,9 @@ export default tseslint.config(
         parser: tseslint.parser,
       },
     },
+    rules: {
+      "vue/multi-word-component-names": "off",
+    }
   },
   eslintConfigPrettier,
 );
