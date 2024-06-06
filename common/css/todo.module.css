@@ -22,3 +22,9 @@
 .task_item[data-checked="true"] {
   text-decoration: line-through;
 }
+
+.todo_submitBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+}

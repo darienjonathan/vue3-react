@@ -112,13 +112,17 @@ export const Todo: React.FC = () => {
       </section>
       <div>
         <TextInput value={newTaskName} onChange={handleNewTaskNameChange} />
-        <button disabled={!newTaskName} onClick={createNewTask}>
+        <button
+          className={styles.todo_submitBtn}
+          disabled={!newTaskName}
+          onClick={createNewTask}
+        >
           Submit
         </button>
       </div>
-      <button disabled={!toastText} onClick={clearToastManually}>
-        Clear Toast Manually
-      </button>
+      {toastText && (
+        <button onClick={clearToastManually}>Clear Toast Manually</button>
+      )}
       <Toast isShown={!!toastText} onClear={clearToast} ref={toastRef}>
         {toastText}
       </Toast>

@@ -91,11 +91,17 @@ const handleCheck = (id: string, isChecked: boolean) => {
   </section>
   <div>
     <TextInput v-model="newTaskName" />
-    <button :disabled="!newTaskName" @click="createNewTask">Submit</button>
+    <button
+      :disabled="!newTaskName"
+      :class="$style.todo_submitBtn"
+      @click="createNewTask"
+    >
+      Submit
+    </button>
   </div>
-  <button :disabled="!toastText" @click="clearToastManually">
-    Clear Toast Manually
-  </button>
+  <template v-if="toastText">
+    <button @click="clearToastManually">Clear Toast Manually</button>
+  </template>
   <Toast ref="toastRef" :is-shown="!!toastText" @clear="clearToast">{{
     toastText
   }}</Toast>
