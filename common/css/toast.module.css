@@ -1,0 +1,15 @@
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  font-size: 1.5rem;
+}
+
+.toast.toast__vue {
+  background-color: var(--vue-color);
+}
+
+.toast.toast__react {
+  background-color: var(--react-color);
+}

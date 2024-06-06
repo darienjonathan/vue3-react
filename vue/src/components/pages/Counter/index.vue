@@ -16,8 +16,10 @@ const decrease = () => {
 <template>
   <div>
     <div :class="$style.count">currentCount: {{ count }}</div>
-    <button :disabled="!canDecrease" @click="decrease">-</button>
-    <button @click="increase">+</button>
+    <button :class="$style.button" :disabled="!canDecrease" @click="decrease">
+      -
+    </button>
+    <button :class="$style.button" @click="increase">+</button>
   </div>
 </template>
 
@@ -26,7 +28,7 @@ const decrease = () => {
   margin-block-end: 10px;
 }
 
-button {
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;

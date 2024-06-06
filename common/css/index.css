@@ -1,6 +1,8 @@
 :root {
-  --black: rgb(32 32 32);
-  --white: rgb(228 228 228);
+  --black: rgb(0 0 0);
+  --white: rgb(255 255 255);
+  --grey-darker: rgb(32 32 32);
+  --grey-lighter: rgb(228 228 228);
   --grey-dark: rgb(64 64 64);
   --grey-light: rgb(192 192 192);
   --react-dark: rgb(35 39 47);
@@ -13,7 +15,7 @@
 
 html {
   --text-color: var(--black);
-  --bg-color: var(--white);
+  --bg-color: var(--grey-lighter);
   --btn-bg-color: var(--grey-light);
   --vue-color: var(--vue-light);
   --react-color: var(--react-light);
@@ -22,7 +24,7 @@ html {
 
 html.dark {
   --text-color: var(--white);
-  --bg-color: var(--black);
+  --bg-color: var(--grey-darker);
   --btn-bg-color: var(--grey-dark);
   --vue-color: var(--vue-dark);
   --react-color: var(--react-dark);

@@ -2,7 +2,7 @@
   margin-block-end: 10px;
 }
 
-button {
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;

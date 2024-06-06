@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "@/App.tsx";
-import { Home } from "@/components/Home";
-import { Counter } from "@/components/Counter";
+import { Home } from "@/components/pages/Home";
+import { Counter } from "@/components/pages/Counter";
+import { Todo } from "@/components/pages/Todo";
 import "common/css/index.css";
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/counter",
         element: <Counter />,
+      },
+      {
+        path: "/todo",
+        element: <Todo />,
       },
       {
         path: "*",
