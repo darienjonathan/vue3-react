@@ -1,0 +1,15 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.description.description__type {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+}
+
+.description_label {
+  font-weight: bold;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "@/App.tsx";
@@ -6,6 +6,12 @@ import { Home } from "@/components/pages/Home";
 import { Counter } from "@/components/pages/Counter";
 import { Todo } from "@/components/pages/Todo";
 import "common/css/index.css";
+
+const Pokemon = lazy(() =>
+  import("./components/pages/Pokemon").then((module) => ({
+    default: module.Pokemon,
+  })),
+);
 
 const router = createBrowserRouter([
   {
@@ -23,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/todo",
         element: <Todo />,
+      },
+      {
+        path: "/pokemon",
+        element: <Pokemon />,
       },
       {
         path: "*",
