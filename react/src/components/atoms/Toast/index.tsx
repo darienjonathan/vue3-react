@@ -1,4 +1,11 @@
-import { useEffect, useRef } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import styles from "common/css/toast.module.css";
 import { createPortal } from "react-dom";
 
@@ -9,28 +16,57 @@ type Props = {
 };
 
 /* to give enough time for inspection when presenting */
-const PROPS_SHOW_DURATION = 10000;
+const PROPS_SHOW_DURATION = 10_000;
 
-export const Toast: React.FC<Props> = ({ isShown, onClear, children }) => {
-  const timer = useRef<number | undefined>(undefined);
+export const Toast = forwardRef<{ clear: Props["onClear"] }, Props>(
+  ({ isShown, onClear, children }, ref) => {
+    /* progress */
+    const [timeProgress, setTimeProgres] = useState(0);
+    const progressWidth = `${100 - (timeProgress / PROPS_SHOW_DURATION) * 100}%`;
 
-  useEffect(() => {
-    clearTimeout(timer.current);
-    timer.current = undefined;
-    if (isShown) return;
+    const raf = useRef<number>();
+    const rafStartTime = useRef<number>();
+    const rafCallback = useCallback(
+      (timestamp: number) => {
+        if (!rafStartTime.current) {
+          rafStartTime.current = timestamp;
+        }
 
-    timer.current = window.setTimeout(() => {
-      onClear();
-    }, PROPS_SHOW_DURATION);
-  }, [onClear, isShown]);
+        const currentTimeProgress = timestamp - rafStartTime.current;
+        if (currentTimeProgress >= PROPS_SHOW_DURATION) {
+          onClear();
+          return;
+        }
 
-  return createPortal(
-    <div
-      className={`${styles.toast} ${styles.toast__react}`}
-      style={{ display: isShown ? "block" : "none" }}
-    >
-      {children}
-    </div>,
-    document.body,
-  );
-};
+        raf.current = window.requestAnimationFrame(rafCallback);
+        setTimeProgres(currentTimeProgress);
+      },
+      [onClear],
+    );
+
+    useEffect(() => {
+      if (raf.current) window.cancelAnimationFrame(raf.current);
+      raf.current = undefined;
+      if (!isShown) return;
+
+      raf.current = window.requestAnimationFrame(rafCallback);
+    }, [rafCallback, isShown]);
+
+    /* ref expose demonstration */
+    useImperativeHandle(ref, () => ({ clear: onClear }));
+
+    return createPortal(
+      <div
+        className={`${styles.toast} ${styles.toast__react}`}
+        style={{ display: isShown ? "block" : "none" }}
+      >
+        {children}
+        <div
+          className={styles.toast_progress}
+          style={{ width: progressWidth }}
+        />
+      </div>,
+      document.body,
+    );
+  },
+);

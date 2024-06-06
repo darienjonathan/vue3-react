@@ -20,6 +20,10 @@ const currentTab = ref<TabStatus>("all");
 
 /* Toast */
 const { toastText, clearToast, showToast } = useToast();
+const toastRef = ref<InstanceType<typeof Toast>>();
+const clearToastManually = () => {
+  toastRef.value?.clear();
+};
 
 /* Task List */
 const tasks = ref<Task[]>([]);
@@ -87,9 +91,14 @@ const handleCheck = (id: string, isChecked: boolean) => {
   </section>
   <div>
     <TextInput v-model="newTaskName" />
-    <button @click="createNewTask">Submit</button>
+    <button :disabled="!newTaskName" @click="createNewTask">Submit</button>
   </div>
-  <Toast :is-shown="!!toastText" @clear="clearToast">{{ toastText }}</Toast>
+  <button :disabled="!toastText" @click="clearToastManually">
+    Clear Toast Manually
+  </button>
+  <Toast ref="toastRef" :is-shown="!!toastText" @clear="clearToast">{{
+    toastText
+  }}</Toast>
 </template>
 <style module>
 @import url("common/css/todo.module.css");
