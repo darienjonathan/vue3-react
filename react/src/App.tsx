@@ -1,7 +1,8 @@
+import { Suspense } from "react";
 import { Outlet, Link, useMatches } from "react-router-dom";
 import styles from "common/css/app.module.css";
+import { Loading } from "@/components/atoms/Loading";
 import { links } from "../../common/script/const/route/const";
-import { Suspense } from "react";
 
 export const App: React.FC = () => {
   const matches = useMatches();
@@ -42,7 +43,7 @@ export const App: React.FC = () => {
         </nav>
       </aside>
       <main className={styles.app_main}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
       </main>

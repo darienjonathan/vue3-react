@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { links } from "../../common/script/const/route/const";
+import Loading from "@/components/atoms/Loading/index.vue";
 
 const route = useRoute();
 const activeLink = computed(() => links.find((link) => link.to === route.path));
@@ -32,7 +33,20 @@ const activeLink = computed(() => links.find((link) => link.to === route.path));
         </template>
       </nav>
     </aside>
-    <main :class="$style.app_main"><router-view /></main>
+    <main :class="$style.app_main">
+      <router-view v-slot="{ Component }">
+        <!-- show fallback without waiting -->
+        <suspense timeout="0">
+          <div :key="route.path">
+            <!-- main content -->
+            <component :is="Component"></component>
+          </div>
+
+          <!-- loading state -->
+          <template #fallback><Loading /></template>
+        </suspense>
+      </router-view>
+    </main>
   </div>
 </template>
 

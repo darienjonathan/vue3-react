@@ -1,3 +1,11 @@
+<template>
+  <section>
+    <header :class="$style.header"><slot name="header" /></header>
+    <div :class="$style.sprites"><slot name="sprites" /></div>
+    <div :class="$style.description"><slot name="description" /></div>
+  </section>
+</template>
+<style module>
 .header {
   padding: 10px;
   font-size: 1.2rem;
@@ -17,3 +25,4 @@
   padding: 15px;
   background-color: rgb(32 0 0 / 0.25);
 }
+</style>
