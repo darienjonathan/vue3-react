@@ -13,3 +13,19 @@
 .toast.toast__react {
   background-color: var(--react-color);
 }
+
+.toast_progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+}
+
+.toast__vue .toast_progress {
+  background-color: var(--vue-color-inverse);
+}
+
+.toast__react .toast_progress {
+  background-color: var(--react-color-inverse);
+}

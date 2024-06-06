@@ -18,7 +18,9 @@ html {
   --bg-color: var(--grey-lighter);
   --btn-bg-color: var(--grey-light);
   --vue-color: var(--vue-light);
+  --vue-color-inverse: var(--vue-dark);
   --react-color: var(--react-light);
+  --react-color-inverse: var(--react-dark);
   --link-visited-color: var(--red-dark);
 }
 
@@ -27,7 +29,9 @@ html.dark {
   --bg-color: var(--grey-darker);
   --btn-bg-color: var(--grey-dark);
   --vue-color: var(--vue-dark);
+  --vue-color-inverse: var(--vue-light);
   --react-color: var(--react-dark);
+  --react-color-inverse: var(--react-light);
   --link-visited-color: var(--red-light);
 }
 

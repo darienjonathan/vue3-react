@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { TextInput } from "@/components/atoms/TextInput";
 import { Toast } from "@/components/atoms/Toast";
 import { useToast } from "@/components/atoms/Toast/useToast";
@@ -22,6 +22,10 @@ export const Todo: React.FC = () => {
 
   /* Toast */
   const { toastText, clearToast, showToast } = useToast();
+  const toastRef = useRef<React.ElementRef<typeof Toast>>(null);
+  const clearToastManually = () => {
+    toastRef.current?.clear();
+  };
 
   /* Task List */
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -66,8 +70,6 @@ export const Todo: React.FC = () => {
     );
   };
 
-  console.log(toastText);
-
   return (
     <>
       <h1>Todo App</h1>
@@ -110,9 +112,18 @@ export const Todo: React.FC = () => {
       </section>
       <div>
         <TextInput value={newTaskName} onChange={handleNewTaskNameChange} />
-        <button onClick={createNewTask}>Submit</button>
+        <button
+          className={styles.todo_submitBtn}
+          disabled={!newTaskName}
+          onClick={createNewTask}
+        >
+          Submit
+        </button>
       </div>
-      <Toast isShown={!!toastText} onClear={clearToast}>
+      {toastText && (
+        <button onClick={clearToastManually}>Clear Toast Manually</button>
+      )}
+      <Toast isShown={!!toastText} onClear={clearToast} ref={toastRef}>
         {toastText}
       </Toast>
     </>
