@@ -14,10 +14,16 @@ export const Counter: React.FC = () => {
   return (
     <div>
       <div className={styles.count}>currentCount: {count}</div>
-      <button onClick={decrease} disabled={!canDecrease}>
+      <button
+        className={styles.button}
+        onClick={decrease}
+        disabled={!canDecrease}
+      >
         -
       </button>
-      <button onClick={increase}>+</button>
+      <button className={styles.button} onClick={increase}>
+        +
+      </button>
     </div>
   );
 };

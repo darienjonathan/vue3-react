@@ -1,15 +1,6 @@
 import { Outlet, Link, useMatches } from "react-router-dom";
 import styles from "common/css/app.module.css";
-
-type Link = {
-  to: string;
-  text: string;
-};
-
-const links: Link[] = [
-  { to: "/", text: "Home" },
-  { to: "/counter", text: "Counter" },
-];
+import { links } from "../../common/script/const/route/const";
 
 export const App: React.FC = () => {
   const matches = useMatches();
