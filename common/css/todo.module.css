@@ -1,0 +1,24 @@
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav > * + * {
+  margin-inline-start: 8px;
+}
+
+.nav_item {
+  cursor: pointer;
+}
+
+.nav_item__active {
+  text-decoration: underline;
+}
+
+.task_list {
+  margin-block: 20px;
+}
+
+.task_item[data-checked="true"] {
+  text-decoration: line-through;
+}

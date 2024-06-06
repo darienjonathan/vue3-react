@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-
-type Link = {
-  to: string;
-  text: string;
-};
-
-const links: Link[] = [
-  { to: "/", text: "Home" },
-  { to: "/counter", text: "Counter" },
-];
+import { links } from "../../common/script/const/route/const";
 
 const route = useRoute();
 const activeLink = computed(() => links.find((link) => link.to === route.path));
