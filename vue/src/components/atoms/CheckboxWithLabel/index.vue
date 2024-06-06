@@ -11,7 +11,6 @@ const handleCheck = (e: Event) => {
 };
 </script>
 <template>
-  <div>hoe</div>
   <label :class="$style.checkboxWithLabel">
     <input
       :checked="isChecked"
