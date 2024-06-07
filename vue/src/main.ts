@@ -7,6 +7,7 @@ import Counter from "@/components/pages/Counter/index.vue";
 import Todo from "@/components/pages/Todo/index.vue";
 import NotFound from "@/components/pages/NotFound/index.vue";
 import Pokemon from "@/components/pages/Pokemon/index.vue";
+import Theme from "@/components/pages/Theme/index.vue";
 import "common/css/index.css";
 
 const routes = [
@@ -16,6 +17,7 @@ const routes = [
   },
   { path: "/counter", component: Counter },
   { path: "/todo", component: Todo },
+  { path: "/theme", component: Theme },
   { path: "/pokemon", component: Pokemon },
   {
     path: "/:pathMatch(.*)*",

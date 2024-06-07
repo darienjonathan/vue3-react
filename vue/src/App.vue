@@ -3,16 +3,22 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { links } from "../../common/script/const/route/const";
 import Loading from "@/components/atoms/Loading/index.vue";
+import { useProvideTheme } from "@/composables/contexts/useProvideTheme";
 
 const route = useRoute();
 const activeLink = computed(() => links.find((link) => link.to === route.path));
+
+const { theme } = useProvideTheme();
 </script>
 
 <template>
   <div :class="$style.app">
     <header :class="[$style.app_header, $style.header]">
-      <div :class="[$style.header_label, $style.header_label__vue]">Vue</div>
-      <div :class="$style.header_text">シンプルなvue3とReact比較</div>
+      <div :class="$style.header_title">
+        <div :class="[$style.header_label, $style.header_label__vue]">Vue</div>
+        <div :class="$style.header_text">シンプルなvue3とReact比較</div>
+      </div>
+      <div :class="$style.header_theme">current theme: {{ theme }}</div>
     </header>
     <aside :class="$style.app_aside">
       <div :class="$style.link_activeRoute">

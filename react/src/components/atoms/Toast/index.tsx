@@ -49,6 +49,7 @@ export const Toast = forwardRef<{ clear: Props["onClear"] }, Props>(
       raf.current = undefined;
       if (!isShown) return;
 
+      rafStartTime.current = undefined;
       raf.current = window.requestAnimationFrame(rafCallback);
     }, [rafCallback, isShown]);
 

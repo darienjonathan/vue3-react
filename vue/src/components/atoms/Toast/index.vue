@@ -39,6 +39,7 @@ watch(
     raf.value = undefined;
     if (!isShown) return;
 
+    rafStartTime.value = undefined;
     raf.value = window.requestAnimationFrame(rafCallback);
   },
 );
