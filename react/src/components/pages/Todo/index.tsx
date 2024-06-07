@@ -123,7 +123,7 @@ export const Todo: React.FC = () => {
       {toastText && (
         <button onClick={clearToastManually}>Clear Toast Manually</button>
       )}
-      <Toast isShown={!!toastText} onClear={clearToast} ref={toastRef}>
+      <Toast onClear={clearToast} ref={toastRef}>
         {toastText}
       </Toast>
     </>
