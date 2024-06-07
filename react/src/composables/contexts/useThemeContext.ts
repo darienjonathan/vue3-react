@@ -14,7 +14,7 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 export const useThemeContext = (): ThemeContextType & { theme: Theme } => {
-  const [theme, setTheme] = useState<Theme>(getDefaultTheme());
+  const [theme, setTheme] = useState<Theme>("light");
 
   /* set default theme based on browser preference */
   const setDefaultTheme = useCallback(() => {

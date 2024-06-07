@@ -27,6 +27,8 @@ export const useProvideTheme = () => {
   watch(theme, () => {
     const classListMethod = theme.value === "dark" ? "add" : "remove";
     document.documentElement.classList[classListMethod]("dark");
+  }, {
+    immediate: true
   })
 
   provide<ThemeContext>(ThemeKey, {
