@@ -102,9 +102,7 @@ const handleCheck = (id: string, isChecked: boolean) => {
   <template v-if="toastText">
     <button @click="clearToastManually">Clear Toast Manually</button>
   </template>
-  <Toast ref="toastRef" :is-shown="!!toastText" @clear="clearToast">{{
-    toastText
-  }}</Toast>
+  <Toast ref="toastRef" @clear="clearToast">{{ toastText }}</Toast>
 </template>
 <style module>
 @import url("common/css/todo.module.css");
