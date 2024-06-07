@@ -5,6 +5,7 @@ import { App } from "@/App.tsx";
 import { Home } from "@/components/pages/Home";
 import { Counter } from "@/components/pages/Counter";
 import { Todo } from "@/components/pages/Todo";
+import { Theme } from "@/components/pages/Theme";
 import "common/css/index.css";
 
 const Pokemon = lazy(() =>
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/todo",
         element: <Todo />,
+      },
+      {
+        path: "/theme",
+        element: <Theme />,
       },
       {
         path: "/pokemon",

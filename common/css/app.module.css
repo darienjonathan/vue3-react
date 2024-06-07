@@ -25,12 +25,18 @@
   grid-area: header;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   box-sizing: border-box;
   height: var(--header-height);
 }
 
 .header > * {
   line-height: var(--header-height);
+}
+
+.header_title {
+  display: flex;
+  align-items: center;
 }
 
 .header_label {
@@ -48,6 +54,10 @@
 
 .header_text {
   padding-inline-start: 10px;
+}
+
+.header_theme {
+  margin-inline-end: 10px;
 }
 
 .link_activeRoute {
