@@ -1,0 +1,19 @@
+.table_group > * + * {
+  margin-block-start: 16px;
+}
+
+.table_title {
+  margin-block-end: 4px;
+}
+
+.table_grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  align-items: center;
+  font-size: 0.8rem;
+  gap: 4px;
+}
+
+.table_header {
+  font-weight: bold;
+}
