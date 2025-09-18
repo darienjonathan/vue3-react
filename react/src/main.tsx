@@ -6,6 +6,8 @@ import { Home } from "@/components/pages/Home";
 import { Counter } from "@/components/pages/Counter";
 import { Todo } from "@/components/pages/Todo";
 import { Theme } from "@/components/pages/Theme";
+import { Fetch } from "@/components/pages/Fetch";
+import { FetchTanStack } from "@/components/pages/FetchTanStack";
 import "common/css/index.css";
 
 const Pokemon = lazy(() =>
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/pokemon",
         element: <Pokemon />,
+      },
+      {
+        path: "/fetch",
+        element: <Fetch />,
+      },
+      {
+        path: "/fetch-tanstack",
+        element: <FetchTanStack />,
       },
       {
         path: "*",
